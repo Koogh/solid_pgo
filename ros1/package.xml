@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>solid_pgo</name>
+  <version>1.0.0</version>
+  <description>
+    SLAM backend: FAST_LIO + SOLiD loop detection + GTSAM pose graph optimization.
+    ROS1 (noetic/melodic) version.
+  </description>
+
+  <maintainer email="user@example.com">maintainer</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>pcl_conversions</build_depend>
+  <build_depend>libpcl-all-dev</build_depend>
+  <build_depend>libeigen3-dev</build_depend>
+
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>pcl_conversions</exec_depend>
+
+  <export></export>
+</package>

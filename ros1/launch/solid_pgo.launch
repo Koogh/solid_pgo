@@ -1,0 +1,20 @@
+<launch>
+
+    <!-- ============================================================
+         solid_pgo.launch  (ROS1)
+         Runs solid_pgo_node alongside FAST_LIO.
+         Topic remapping maps FAST_LIO output to solid_pgo input.
+         ============================================================ -->
+
+    <!-- FAST_LIO output topics → solid_pgo input topics -->
+    <remap from="/aft_mapped_to_init"             to="/Odometry"/>
+    <remap from="/velodyne_cloud_registered_local" to="/cloud_registered_body"/>
+
+    <!-- solid_pgo node -->
+    <node pkg="solid_pgo" type="solid_pgo_node" name="solid_pgo_node" output="screen">
+        <rosparam file="$(find solid_pgo)/config/params.yaml" command="load"/>
+        <!-- Override save_directory at runtime if needed: -->
+        <!-- <param name="save_directory" value="$(env HOME)/solid_pgo_data/"/> -->
+    </node>
+
+</launch>

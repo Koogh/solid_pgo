@@ -1,0 +1,16 @@
+# solid_pgo ROS1 parameters
+# -----------------------------------------------------------------------
+# Keyframe selection
+keyframe_meter_gap: 0.5        # [m] add keyframe when moved this far
+keyframe_deg_gap:   10.0       # [deg] add keyframe when rotated this much
+
+# SOLiD loop closure
+# cosine similarity threshold: higher = stricter (typical range 0.5 ~ 0.9)
+solid_loop_threshold:     0.7
+solid_num_exclude_recent: 50   # exclude latest N frames from loop search
+
+# Map visualization
+mapviz_filter_size: 0.05       # [m] voxel grid for /aft_pgo_map publish
+
+# Save directory (must end with /)
+save_directory: "/tmp/solid_pgo_data/"
