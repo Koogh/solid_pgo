@@ -1,0 +1,61 @@
+solid_pgo_node:
+  ros__parameters:
+    # ---- Topics (rko_lio defaults) ----
+    cloud_topic: "rko_lio/frame"      # sensor_msgs/PointCloud2 (deskewed LiDAR scan)
+    odom_topic:  "rko_lio/odometry"   # nav_msgs/Odometry (LIO pose estimate)
+    map_frame:   "map"
+
+    # ---- Keyframe selection ----
+    keyframe_meter_gap: 1.0   # [m]  add keyframe if translation > this
+    keyframe_rad_gap:   0.4   # [rad] add keyframe if rotation > this
+
+    # ---- SOLiD descriptor ----
+    # Vertical FOV of your LiDAR (degrees)
+    #   VLP-16 :  FOV_u= 15.0  FOV_d=-15.0   NUM_HEIGHT=16
+    #   OS1-64  :  FOV_u= 22.5  FOV_d=-22.5   NUM_HEIGHT=64
+    #   Avia    :  FOV_u= 20.6  FOV_d=-51.4   NUM_HEIGHT=6
+    solid_fov_upper:   2.0     # [deg] upper vertical FOV limit
+    solid_fov_lower:  -24.8   # [deg] lower vertical FOV limit
+    solid_num_angle:   60     # azimuth bins
+    solid_num_range:   40     # range bins
+    solid_num_height:  32     # elevation bins
+    solid_min_distance: 3     # [m] minimum range to use
+    solid_max_distance: 80    # [m] maximum range to use
+    solid_voxel_size:   0.4   # [m] voxel size for descriptor computation
+
+    # ---- Loop detection ----
+    loop_closure_frequency:   1.0   # [Hz] how often to run loop detector
+    solid_loop_threshold:     0.85  # cosine similarity threshold (higher = stricter)
+    solid_num_exclude_recent: 50    # exclude last N keyframes from candidates
+
+    # ---- ICP verification ----
+    loop_submap_size:      10    # ±N keyframes around loop candidate for submap
+    icp_fitness_threshold: 0.3   # accept loop if ICP score < this
+
+    # ---- Map publishing ----
+    keyframe_voxel_size: 0.4   # [m] stored keyframe downsample
+    map_voxel_size:      0.2   # [m] global map downsample for publishing
+
+    # ---- Odometry noise model ----
+    # mode:
+    #   "fixed"      — constant diagonal noise (fast, safe default)
+    #   "distance"   — noise grows with distance traveled (more realistic)
+    #   "covariance" — use pose.covariance from the odom msg (requires LIO support)
+    #                  falls back to "fixed" if covariance is all-zero
+    odom_noise_mode:       "fixed"
+
+    # Base sigmas shared by all modes  [rot: rad, trans: m]
+    odom_sigma_rot:        1.0e-3
+    odom_sigma_trans:      1.0e-2
+
+    # "distance" mode: sigma += scale * distance_since_last_keyframe
+    odom_dist_scale_rot:   1.0e-4   # [rad/m]
+    odom_dist_scale_trans: 5.0e-3   # [m/m]
+
+    # "covariance" mode: minimum floor (prevents near-zero sigma from degenerate LIO output)
+    odom_min_sigma_rot:    1.0e-4
+    odom_min_sigma_trans:  1.0e-3
+
+    # ---- Save ----
+    save_map: false
+    save_dir: "/tmp/solid_pgo"

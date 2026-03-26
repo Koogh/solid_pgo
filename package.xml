@@ -2,14 +2,15 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>solid_pgo</name>
-  <version>1.0.0</version>
+  <version>0.1.0</version>
   <description>
-    SLAM backend: FAST_LIO + SOLiD loop detection + GTSAM pose graph optimization.
-    ROS2 (humble) version.
+    SLAM back-end using SOLiD descriptor for loop detection
+    and GTSAM iSAM2 for pose graph optimization.
+    Designed to work with any LIO front-end (default: rko_lio).
   </description>
 
-  <maintainer email="user@example.com">maintainer</maintainer>
-  <license>BSD</license>
+  <maintainer email="user@example.com">user</maintainer>
+  <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -17,12 +18,16 @@
   <depend>sensor_msgs</depend>
   <depend>nav_msgs</depend>
   <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend>
   <depend>tf2</depend>
   <depend>tf2_ros</depend>
+  <depend>pcl_ros</depend>
   <depend>pcl_conversions</depend>
 
+  <build_depend>eigen3_cmake_module</build_depend>
   <build_depend>libpcl-all-dev</build_depend>
-  <build_depend>libeigen3-dev</build_depend>
+
+  <exec_depend>libpcl-all</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
