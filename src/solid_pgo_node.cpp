@@ -626,7 +626,7 @@ private:
             // Centroid of source
             Eigen::Vector4f centroid;
             pcl::compute3DCentroid(*src_ds, centroid);
-            float cx = centroid[0], cy = centroid[1], cz = centroid[2];
+            float cx = centroid[0], cy = centroid[1];
             float yaw_rad = deg2rad((float)yaw_deg);
             float c = cosf(yaw_rad), s = sinf(yaw_rad);
             // R * (p - center) + center  →  T_init = translate(center) * R * translate(-center)
